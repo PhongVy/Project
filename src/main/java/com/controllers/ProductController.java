@@ -39,6 +39,7 @@ public class ProductController extends HttpServlet {
             out.println("<h1>Servlet ProductController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            out.println("Hello");
         }
     } 
 
