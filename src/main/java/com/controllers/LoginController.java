@@ -5,23 +5,20 @@
 
 package com.controllers;
 
-import com.daos.CategoryDAO;
-import com.daos.HomeDAO;
-import com.models.Categories;
-import com.models.Product;
+import com.daos.AccountDAO;
+import com.models.Accounts;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import javax.print.attribute.standard.PrinterState;
 
 /**
  *
  * @author PC
  */
-public class HomeController extends HttpServlet {
+public class LoginController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,11 +29,20 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       
         response.setContentType("text/html;charset=UTF-8");
-         
+        try (PrintWriter out = response.getWriter()) {
+            String useName = request.getParameter("user");
+            String password = request.getParameter("pass");
+            AccountDAO accDao = new AccountDAO();
+            Accounts a = accDao.login(useName, password);
+            if(a == null){
+                request.setAttribute("mess", "UserName or Password is wrong!");
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
+            } else{
+                response.sendRedirect("Home");
+            }
+        }
     } 
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -49,20 +55,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        try{
-        HomeDAO dao = new HomeDAO();
-        CategoryDAO cao = new CategoryDAO();
-        
-        List<Product> list = dao.getListProduct();
-        List<Categories> listCat = cao.getListCategory();
-        
-        request.setAttribute("listP", list);
-        request.setAttribute("listC", listCat);
-        
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+        processRequest(request, response);
     } 
 
     /** 
@@ -75,7 +68,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /** 
