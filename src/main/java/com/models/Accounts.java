@@ -16,11 +16,22 @@ public class Accounts {
     private String Address;
     private int Phone;
     private String Email;
-    private int Role;
+    private boolean IsAdmin;
+
+    public Accounts(int UserId, String UserName, String Password, String FullName, String Address, int Phone, String Email, boolean IsAdmin) {
+        this.UserId = UserId;
+        this.UserName = UserName;
+        this.Password = Password;
+        this.FullName = FullName;
+        this.Address = Address;
+        this.Phone = Phone;
+        this.Email = Email;
+        this.IsAdmin = IsAdmin;
+    }
 
     @Override
     public String toString() {
-        return "Accounts{" + "UserId=" + UserId + ", UserName=" + UserName + ", Password=" + Password + ", FullName=" + FullName + ", Address=" + Address + ", Phone=" + Phone + ", Email=" + Email + ", Role=" + Role + '}';
+        return "Accounts{" + "UserId=" + UserId + ", UserName=" + UserName + ", Password=" + Password + ", FullName=" + FullName + ", Address=" + Address + ", Phone=" + Phone + ", Email=" + Email + ", IsAdmin=" + IsAdmin + '}';
     }
 
     public int getUserId() {
@@ -79,22 +90,13 @@ public class Accounts {
         this.Email = Email;
     }
 
-    public int getRole() {
-        return Role;
+    public boolean isIsAdmin() {
+        return IsAdmin;
     }
 
-    public void setRole(int Role) {
-        this.Role = Role;
+    public void setIsAdmin(boolean IsAdmin) {
+        this.IsAdmin = IsAdmin;
     }
 
-    public Accounts(int UserId, String UserName, String Password, String FullName, String Address, int Phone, String Email, int Role) {
-        this.UserId = UserId;
-        this.UserName = UserName;
-        this.Password = Password;
-        this.FullName = FullName;
-        this.Address = Address;
-        this.Phone = Phone;
-        this.Email = Email;
-        this.Role = Role;
-    }
+    
 }

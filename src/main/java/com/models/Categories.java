@@ -13,6 +13,10 @@ public class Categories {
     private String CatName;
     private String Description;
 
+    public Categories(int aInt, String string, String string0) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public String toString() {
         return "Categories{" + "CatId=" + CatId + ", CatName=" + CatName + ", Description=" + Description + '}';
@@ -42,9 +46,5 @@ public class Categories {
         this.Description = Description;
     }
 
-    public Categories(int CatId, String CatName, String Description) {
-        this.CatId = CatId;
-        this.CatName = CatName;
-        this.Description = Description;
-    }
+    
 }

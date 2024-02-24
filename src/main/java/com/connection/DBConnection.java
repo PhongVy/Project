@@ -30,10 +30,22 @@ public class DBConnection {
     }
     
 //    public static void main(String[] args) {
-//        try{
-//            System.out.println(new DBConnections().getConnection());
-//        } catch(Exception ex){
-//            
+//        Connection connection = null;
+//        try {
+//            connection = DBConnection.getConnection();
+//            System.out.println("Connected to the database!");
+//        } catch (Exception e) {
+//            System.err.println("Failed to connect to the database.");
+//            e.printStackTrace();
+//        } finally {
+//            if (connection != null) {
+//                try {
+//                    connection.close();
+//                    System.out.println("Connection closed.");
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//            }
 //        }
 //    }
 }
